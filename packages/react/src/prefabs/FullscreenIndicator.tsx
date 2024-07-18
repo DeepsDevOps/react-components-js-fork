@@ -94,7 +94,7 @@ export function FullscreenIndicator({ parentCallback }: FullscreenProps) {
                 requestMethod.call(document);
             }
         } else {
-            const contentElement = document.getElementById('app');
+            const contentElement = document.getElementById('__next');
             const requestMethod = getFullScreenRequestMethod(contentElement);
             if (requestMethod) {
                 requestMethod.call(contentElement);
@@ -105,7 +105,7 @@ export function FullscreenIndicator({ parentCallback }: FullscreenProps) {
 
     return (
         <button className="tl-blur lk-button" onClick={toggleFullScreen}>
-            {isFullScreen ? 'exit' : 'enter'} FullScreen
+            {isFullScreen ? 'Exit' : 'Enter'} FullScreen
         </button>
     )
 }
