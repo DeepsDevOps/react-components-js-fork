@@ -39,7 +39,7 @@ export const FocusToggle = /* @__PURE__ */ React.forwardRef<HTMLButtonElement, F
         var element = document.getElementsByClassName("lk-focus-layout")[0] as HTMLElement;
         element.classList.remove("lk-focus-layout-extended");
       }
-    }, [inFocus]);
+    }, [inFocus, document]);
 
     return (
       <LayoutContext.Consumer>
