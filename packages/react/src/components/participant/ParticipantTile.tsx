@@ -23,6 +23,7 @@ import { AudioTrack } from './AudioTrack';
 import { useParticipantTile } from '../../hooks';
 import { useIsEncrypted } from '../../hooks/useIsEncrypted';
 import { WhiteboardTrack } from '../../prefabs/WhiteboardTrack';
+import { FullscreenIndicator } from '../../prefabs/FullscreenIndicator';
 
 /**
  * The `ParticipantContextIfNeeded` component only creates a `ParticipantContext`
@@ -140,8 +141,10 @@ export const ParticipantTile = /* @__PURE__ */ React.forwardRef<
 
   }, [trackReference]);
 
+  const elementId = `participant_${trackReference.participant.identity}`;
+
   return (
-    <div ref={ref} style={{ position: 'relative' }} {...elementProps}>
+    <div ref={ref} id={elementId} style={{ position: 'relative' }} {...elementProps}>
       <TrackRefContextIfNeeded trackRef={trackReference}>
         <ParticipantContextIfNeeded participant={trackReference.participant}>
           {children ?? (
@@ -202,6 +205,10 @@ export const ParticipantTile = /* @__PURE__ */ React.forwardRef<
           {trackReference.publication?.trackName !== 'whiteboard' ? (
             <FocusToggle trackRef={trackReference} />
           ) : (<></>)}
+
+          <FullscreenIndicator parentCallback={() => {
+            console.log('fullscreen');
+          }} elementId='__next' />
 
         </ParticipantContextIfNeeded>
       </TrackRefContextIfNeeded>

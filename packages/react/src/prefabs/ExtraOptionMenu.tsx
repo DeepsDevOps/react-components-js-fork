@@ -98,7 +98,7 @@ export function ExtraOptionMenu({
       >
         <ul className="lk-media-device-select lk-list" style={{ display: !showDropdown ? 'unset' : 'none' }}>
           <li>
-            <FullscreenIndicator parentCallback={changeState} />
+            <FullscreenIndicator parentCallback={changeState} elementId='__next' />
           </li>
           <li>
             <WhiteboardIndicater shareScreenTracks={shareScreenTracks} parentCallback={changeState} />

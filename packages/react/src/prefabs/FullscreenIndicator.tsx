@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 export interface FullscreenProps {
+    elementId: string;
     parentCallback: () => void;
 }
 
-export function FullscreenIndicator({ parentCallback }: FullscreenProps) {
+export function FullscreenIndicator({ elementId, parentCallback }: FullscreenProps) {
     const isEventListenerConnected = useRef(false);
     const [isFullScreen, setFullScreen] = useState(false);
 
@@ -86,7 +87,6 @@ export function FullscreenIndicator({ parentCallback }: FullscreenProps) {
         }
     }, [isEventListenerConnected, setFullScreen]);
 
-
     const toggleFullScreen = useCallback(() => {
         if (isFullScreen) {
             const requestMethod = getFullScreenCancelMethod();
@@ -95,7 +95,7 @@ export function FullscreenIndicator({ parentCallback }: FullscreenProps) {
                 setFullScreen(false);
             }
         } else {
-            const contentElement = document.getElementById('__next');
+            const contentElement = document.getElementById(elementId);
             const requestMethod = getFullScreenRequestMethod(contentElement);
             if (requestMethod) {
                 requestMethod.call(contentElement);
