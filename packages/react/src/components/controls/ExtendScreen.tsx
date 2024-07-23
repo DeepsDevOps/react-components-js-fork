@@ -5,20 +5,20 @@ import { useFocusToggle } from '../../hooks';
 import { FocusToggleProps } from './FocusToggle';
 
 /**
- * The `FocusToggle` puts the `ParticipantTile` in focus or removes it from focus.
+ * The `ExtendScreen` puts the `ParticipantTile` in full width or removes it from full width.
  * @remarks
  * This component needs to live inside `LayoutContext` to work properly.
  *
  * @example
  * ```tsx
  * <ParticipantTile>
- *   <FocusToggle />
+ *   <ExtendScreen />
  * </ParticipantTile>
  * ```
  * @public
  */
 export const ExtendScreen = /* @__PURE__ */ React.forwardRef<HTMLButtonElement, FocusToggleProps>(
-  function FocusToggle({ trackRef, ...props }: FocusToggleProps, ref) {
+  function ExtendScreen({ trackRef, ...props }: FocusToggleProps, ref) {
     const trackRefFromContext = useMaybeTrackRefContext();
 
     const { mergedProps, inFocus } = useFocusToggle({
