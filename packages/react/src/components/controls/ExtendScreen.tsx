@@ -2,12 +2,7 @@ import * as React from 'react';
 import { LayoutContext, useMaybeTrackRefContext } from '../../context';
 import { FocusToggleIcon, UnfocusToggleIcon } from '../../assets/icons';
 import { useFocusToggle } from '../../hooks';
-import type { TrackReferenceOrPlaceholder } from '@livekit/components-core';
-
-/** @public */
-export interface FocusToggleProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  trackRef?: TrackReferenceOrPlaceholder;
-}
+import { FocusToggleProps } from './FocusToggle';
 
 /**
  * The `FocusToggle` puts the `ParticipantTile` in focus or removes it from focus.
@@ -22,7 +17,7 @@ export interface FocusToggleProps extends React.ButtonHTMLAttributes<HTMLButtonE
  * ```
  * @public
  */
-export const FocusToggle = /* @__PURE__ */ React.forwardRef<HTMLButtonElement, FocusToggleProps>(
+export const ExtendScreen = /* @__PURE__ */ React.forwardRef<HTMLButtonElement, FocusToggleProps>(
   function FocusToggle({ trackRef, ...props }: FocusToggleProps, ref) {
     const trackRefFromContext = useMaybeTrackRefContext();
 
@@ -30,6 +25,20 @@ export const FocusToggle = /* @__PURE__ */ React.forwardRef<HTMLButtonElement, F
       trackRef: trackRef ?? trackRefFromContext,
       props,
     });
+
+    React.useEffect(() => {
+      if (inFocus) {
+        var element = document.getElementsByClassName("lk-focus-layout")[0] as HTMLElement;
+        if (element) {
+          element.classList.add("lk-focus-layout-extended");
+        }
+      } else {
+        var element = document.getElementsByClassName("lk-focus-layout")[0] as HTMLElement;
+        if (element) {
+          element.classList.remove("lk-focus-layout-extended");
+        }
+      }
+    }, [inFocus, document]);
 
     return (
       <LayoutContext.Consumer>
