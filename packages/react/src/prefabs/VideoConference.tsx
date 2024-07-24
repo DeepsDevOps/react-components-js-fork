@@ -142,7 +142,7 @@ export function VideoConference({
 
   const focusTrack = usePinnedTracks(layoutContext)?.[0];
   const focusElementTrack = usePinnedElementTracks(layoutContext)?.[0];
-  const carouselTracks = tracks.filter((track) => !isEqualTrackRef(track, focusTrack));
+  const carouselTracks = tracks.filter((track) => !isEqualTrackRef(track, focusTrack) && !isEqualTrackRef(track, focusElementTrack));
 
   React.useEffect(() => {
     if (meta && meta.host) {
@@ -199,6 +199,7 @@ export function VideoConference({
       .map((ref) => `${ref.publication.trackSid}_${ref.publication.isSubscribed}`)
       .join(),
     focusTrack?.publication?.trackSid,
+    focusElementTrack?.publication?.trackSid,
   ]);
 
   const room = useRoomContext();
@@ -242,6 +243,9 @@ export function VideoConference({
   });
   useWarnAboutMissingStyles();
 
+  console.log(focusElementTrack);
+
+
   return (
     <div className="lk-video-conference" {...props}>
       {isWeb() && (
@@ -265,6 +269,7 @@ export function VideoConference({
                     <ParticipantTile />
                   </CarouselLayout>
                   {focusTrack && <FocusLayout trackRef={focusTrack} />}
+                  {focusElementTrack && <FocusLayout trackRef={focusElementTrack} />}
                 </FocusLayoutContainer>
               </div>
             )}
