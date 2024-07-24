@@ -264,9 +264,9 @@ export function VideoConference({
               <div className="lk-focus-layout-wrapper">
                 <FocusLayoutContainer className={focusElementTrack ? 'lk-focus-layout-extended' : ''}>
                   <ExtendScreen />
-                  (<CarouselLayout tracks={carouselTracks}>
+                  <CarouselLayout tracks={carouselTracks}>
                     <ParticipantTile />
-                  </CarouselLayout>)
+                  </CarouselLayout>
                   {focusTrack && <FocusLayout trackRef={focusTrack} />}
                   {focusElementTrack && <FocusLayout trackRef={focusElementTrack} />}
                 </FocusLayoutContainer>
