@@ -26,22 +26,6 @@ export const ExtendScreen = /* @__PURE__ */ React.forwardRef<HTMLButtonElement, 
       props,
     });
 
-    // React.useEffect(() => {
-    //   if (inFocus) {
-    //     console.log("In Focus Element");
-    //     var element = document.getElementsByClassName("lk-focus-layout")[0] as HTMLElement;
-    //     if (element) {
-    //       element.classList.add("lk-focus-layout-extended");
-    //     }
-    //   } else {
-    //     console.log("In Focus Element + remove layout extend");
-    //     var element = document.getElementsByClassName("lk-focus-layout")[0] as HTMLElement;
-    //     if (element) {
-    //       element.classList.remove("lk-focus-layout-extended");
-    //     }
-    //   }
-    // }, [inFocus, document]);
-
     return (
       <LayoutContext.Consumer>
         {(layoutContext) =>

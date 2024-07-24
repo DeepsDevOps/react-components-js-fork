@@ -41,20 +41,10 @@ export function useFocusElementToggle({ trackRef, props }: UseFocusToggleProps) 
 
           // Set or clear focus based on current focus state.
           if (inFocus) {
-            var element = document.getElementsByClassName("lk-focus-layout")[0] as HTMLElement;
-            if (element) {
-              element.classList.remove("lk-focus-layout-extended");
-            }
-            
             layoutContext?.pinElement.dispatch?.({
               msg: 'clear_pin',
             });
           } else {
-            var element = document.getElementsByClassName("lk-focus-layout")[0] as HTMLElement;
-            if (element) {
-              element.classList.add("lk-focus-layout-extended");
-            }
-            
             layoutContext?.pinElement.dispatch?.({
               msg: 'set_pin',
               trackReference,
