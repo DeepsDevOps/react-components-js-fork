@@ -11,6 +11,7 @@ import type { MessageFormatter } from '../components';
 import {
   CarouselLayout,
   ConnectionStateToast,
+  ExtendScreen,
   FocusLayout,
   FocusLayoutContainer,
   GridLayout,
@@ -262,12 +263,10 @@ export function VideoConference({
             ) : (
               <div className="lk-focus-layout-wrapper">
                 <FocusLayoutContainer className={focusElementTrack ? 'lk-focus-layout-extended' : ''}>
-                  {!focusElementTrack &&
-                    (<CarouselLayout tracks={carouselTracks}>
-                      <ParticipantTile />
-                    </CarouselLayout>)
-                  }
-
+                  <ExtendScreen />
+                  (<CarouselLayout tracks={carouselTracks}>
+                    <ParticipantTile />
+                  </CarouselLayout>)
                   {focusTrack && <FocusLayout trackRef={focusTrack} />}
                   {focusElementTrack && <FocusLayout trackRef={focusElementTrack} />}
                 </FocusLayoutContainer>

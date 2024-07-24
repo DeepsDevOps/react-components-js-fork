@@ -21,15 +21,15 @@ export interface UseFocusToggleProps {
  * ```
  * @public
  */
-export function useFocusElementToggle({ trackRef, props }: UseFocusToggleProps) {
+export function useFocusToggle({ trackRef, props }: UseFocusToggleProps) {
   const trackReference = useEnsureTrackRef(trackRef);
 
   const layoutContext = useMaybeLayoutContext();
   const { className } = React.useMemo(() => setupFocusToggle(), []);
 
   const inFocus: boolean = React.useMemo(() => {
-    return isTrackReferencePinned(trackReference, layoutContext?.pinElement.state);
-  }, [trackRef, layoutContext?.pinElement.state]);
+    return isTrackReferencePinned(trackReference, layoutContext?.pin.state);
+  }, [trackRef, layoutContext?.pin.state]);
 
   const mergedProps = React.useMemo(
     () =>
@@ -41,18 +41,18 @@ export function useFocusElementToggle({ trackRef, props }: UseFocusToggleProps) 
 
           // Set or clear focus based on current focus state.
           if (inFocus) {
-            layoutContext?.pinElement.dispatch?.({
+            layoutContext?.pin.dispatch?.({
               msg: 'clear_pin',
             });
           } else {
-            layoutContext?.pinElement.dispatch?.({
+            layoutContext?.pin.dispatch?.({
               msg: 'set_pin',
               trackReference,
             });
           }
         },
       }),
-    [props, className, trackRef, inFocus, layoutContext?.pinElement],
+    [props, className, trackRef, inFocus, layoutContext?.pin],
   );
 
   return { mergedProps, inFocus };

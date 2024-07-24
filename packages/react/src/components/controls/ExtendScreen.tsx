@@ -1,8 +1,5 @@
 import * as React from 'react';
-import { LayoutContext, useMaybeTrackRefContext } from '../../context';
-import { FullScreen, ExitFullScreen } from '../../assets/icons/tl'
 import { FocusToggleProps } from './FocusToggle';
-import { useFocusElementToggle } from '../../hooks/useFocusElementToggle';
 
 /**
  * The `ExtendScreen` puts the `ParticipantTile` in full width or removes it from full width.
@@ -18,30 +15,28 @@ import { useFocusElementToggle } from '../../hooks/useFocusElementToggle';
  * @public
  */
 export const ExtendScreen = /* @__PURE__ */ React.forwardRef<HTMLButtonElement, FocusToggleProps>(
-  function ExtendScreen({ trackRef, ...props }: FocusToggleProps, ref) {
-    const trackRefFromContext = useMaybeTrackRefContext();
+  function ExtendScreen() {
+    const [inFocus, setInFocus] = React.useState(false);
+    function toggleSide() {
+      if (inFocus) {
+        var element = document.getElementsByClassName("lk-carousel")[0];
+        element.classList.remove("display-none");
 
-    const { mergedProps, inFocus } = useFocusElementToggle({
-      trackRef: trackRef ?? trackRefFromContext,
-      props,
-    });
+        var element2 = document.getElementsByClassName("lk-focus-layout")[0];
+        element2.classList.remove("lk-focus-layout-extended");
+        setInFocus(false);
+      } else {
+        var element = document.getElementsByClassName("lk-carousel")[0];
+        element.classList.add("display-none");
+
+        var element2 = document.getElementsByClassName("lk-focus-layout")[0];
+        element2.classList.add("lk-focus-layout-extended");
+        setInFocus(true);
+      }
+    }
 
     return (
-      <LayoutContext.Consumer>
-        {(layoutContext) =>
-          layoutContext !== undefined && (
-            <button ref={ref} {...mergedProps}>
-              {props.children ? (
-                props.children
-              ) : inFocus ? (
-                <ExitFullScreen />
-              ) : (
-                <FullScreen />
-              )}
-            </button>
-          )
-        }
-      </LayoutContext.Consumer>
+      <button onClick={toggleSide} className="lk-button" aria-pressed="false" data-lk-unread-msgs="0" style={{ position: 'absolute', bottom: "0%", top: "61%", zIndex: 999999, width: "fit-content", height: "fit-content" }}>{inFocus ? "Show" : "Hide"}</button>
     );
   },
 );

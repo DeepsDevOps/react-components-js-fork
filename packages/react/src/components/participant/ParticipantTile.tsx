@@ -16,7 +16,7 @@ import {
   useMaybeTrackRefContext,
 } from '../../context';
 import { FocusToggle } from '../controls/FocusToggle';
-import { ExtendScreen } from '../controls/ExtendScreen';
+// import { ExtendScreen } from '../controls/ExtendScreen';
 import { ParticipantPlaceholder } from '../../assets/images';
 import { LockLockedIcon, ScreenShareIcon } from '../../assets/icons';
 import { VideoTrack } from './VideoTrack';
@@ -205,7 +205,7 @@ export const ParticipantTile = /* @__PURE__ */ React.forwardRef<
           {trackReference.publication?.trackName !== 'whiteboard' && trackReference.publication?.trackName !== 'screen_share' ? (
             <>
               <FocusToggle trackRef={trackReference} />
-              <ExtendScreen className='tl-extend-button' />
+              {/* <ExtendScreen className='tl-extend-button' /> */}
             </>
           ) : (<></>)}
         </ParticipantContextIfNeeded>
