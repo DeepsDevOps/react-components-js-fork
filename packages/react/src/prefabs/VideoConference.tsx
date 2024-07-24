@@ -20,7 +20,7 @@ import {
   formatChatMessageLinks
 } from '../components';
 import { useCreateLayoutContext, useEnsureParticipant, useRoomContext } from '../context';
-import { useLocalParticipant, usePinnedTracks, useTracks, useWhiteboard } from '../hooks';
+import { useLocalParticipant, usePinnedElementTracks, usePinnedTracks, useTracks, useWhiteboard } from '../hooks';
 import { Chat } from './Chat';
 import { ControlBar } from './ControlBar';
 import { Users } from './Users';
@@ -141,6 +141,7 @@ export function VideoConference({
   }
 
   const focusTrack = usePinnedTracks(layoutContext)?.[0];
+  const focusElementTrack = usePinnedElementTracks(layoutContext)?.[0];
   const carouselTracks = tracks.filter((track) => !isEqualTrackRef(track, focusTrack));
 
   React.useEffect(() => {
@@ -251,7 +252,7 @@ export function VideoConference({
           onWhiteboardChange={whiteboardUpdate}
         >
           <div className="lk-video-conference-inner">
-            {!focusTrack ? (
+            {!focusTrack && !focusElementTrack ? (
               <div className="lk-grid-layout-wrapper">
                 <GridLayout tracks={tracks}>
                   <ParticipantTile />
@@ -259,7 +260,7 @@ export function VideoConference({
               </div>
             ) : (
               <div className="lk-focus-layout-wrapper">
-                <FocusLayoutContainer>
+                <FocusLayoutContainer className={focusElementTrack ? 'lk-focus-layout-extended' : ''}>
                   <CarouselLayout tracks={carouselTracks}>
                     <ParticipantTile />
                   </CarouselLayout>

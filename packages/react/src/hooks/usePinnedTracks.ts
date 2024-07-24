@@ -19,9 +19,16 @@ export function usePinnedTracks(layoutContext?: LayoutContextType): TrackReferen
     if (layoutContext?.pin.state !== undefined && layoutContext.pin.state.length >= 1) {
       return layoutContext.pin.state;
     }
+    return [];
+  }, [layoutContext.pin.state]);
+}
+
+export function usePinnedElementTracks(layoutContext?: LayoutContextType): TrackReferenceOrPlaceholder[] {
+  layoutContext = useEnsureLayoutContext(layoutContext);
+  return React.useMemo(() => {
     if (layoutContext?.pinElement.state !== undefined && layoutContext.pinElement.state.length >= 1) {
       return layoutContext.pinElement.state;
     }
     return [];
-  }, [layoutContext.pin.state, layoutContext.pinElement.state]);
+  }, [layoutContext.pinElement.state]);
 }
