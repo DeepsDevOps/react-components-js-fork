@@ -206,7 +206,7 @@ export const ParticipantTile = /* @__PURE__ */ React.forwardRef<
             <FocusToggle trackRef={trackReference} />
           ) : (<></>)}
 
-          <ExtendScreen />
+          <ExtendScreen className='tl-extend-button' />
 
         </ParticipantContextIfNeeded>
       </TrackRefContextIfNeeded>
