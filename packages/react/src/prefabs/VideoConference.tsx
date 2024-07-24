@@ -243,9 +243,6 @@ export function VideoConference({
   });
   useWarnAboutMissingStyles();
 
-  console.log(focusElementTrack);
-
-
   return (
     <div className="lk-video-conference" {...props}>
       {isWeb() && (
@@ -265,9 +262,12 @@ export function VideoConference({
             ) : (
               <div className="lk-focus-layout-wrapper">
                 <FocusLayoutContainer className={focusElementTrack ? 'lk-focus-layout-extended' : ''}>
-                  <CarouselLayout tracks={carouselTracks}>
-                    <ParticipantTile />
-                  </CarouselLayout>
+                  {!focusElementTrack &&
+                    (<CarouselLayout tracks={carouselTracks}>
+                      <ParticipantTile />
+                    </CarouselLayout>)
+                  }
+
                   {focusTrack && <FocusLayout trackRef={focusTrack} />}
                   {focusElementTrack && <FocusLayout trackRef={focusElementTrack} />}
                 </FocusLayoutContainer>
