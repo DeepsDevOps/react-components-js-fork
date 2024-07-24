@@ -19,6 +19,9 @@ export function usePinnedTracks(layoutContext?: LayoutContextType): TrackReferen
     if (layoutContext?.pin.state !== undefined && layoutContext.pin.state.length >= 1) {
       return layoutContext.pin.state;
     }
+    if (layoutContext?.pinElement.state !== undefined && layoutContext.pinElement.state.length >= 1) {
+      return layoutContext.pinElement.state;
+    }
     return [];
-  }, [layoutContext.pin.state]);
+  }, [layoutContext.pin.state, layoutContext.pinElement.state]);
 }
