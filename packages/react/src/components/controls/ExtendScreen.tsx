@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { LayoutContext, useMaybeTrackRefContext } from '../../context';
-import { FocusToggleIcon, UnfocusToggleIcon } from '../../assets/icons';
+// import { FocusToggleIcon, UnfocusToggleIcon } from '../../assets/icons';
+import { FullScreen, ExitFullScreen } from '../../assets/icons/tl'
 import { useFocusToggle } from '../../hooks';
 import { FocusToggleProps } from './FocusToggle';
 
@@ -48,9 +49,9 @@ export const ExtendScreen = /* @__PURE__ */ React.forwardRef<HTMLButtonElement, 
               {props.children ? (
                 props.children
               ) : inFocus ? (
-                <UnfocusToggleIcon />
+                <ExitFullScreen />
               ) : (
-                <FocusToggleIcon />
+                <FullScreen />
               )}
             </button>
           )
