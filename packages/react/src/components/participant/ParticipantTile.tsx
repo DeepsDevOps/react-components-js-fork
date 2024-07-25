@@ -202,10 +202,9 @@ export const ParticipantTile = /* @__PURE__ */ React.forwardRef<
             </>
           )}
 
-          {trackReference.publication?.trackName !== 'whiteboard' && trackReference.publication?.trackName !== 'screen_share' ? (
+          {trackReference.publication?.trackName !== 'whiteboard' ? (
             <>
               <FocusToggle trackRef={trackReference} />
-              {/* <ExtendScreen className='tl-extend-button' /> */}
             </>
           ) : (<></>)}
         </ParticipantContextIfNeeded>

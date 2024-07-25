@@ -311,21 +311,13 @@ export function VideoConference({
             ) : (<></>)
           }
 
-          {/* {
-            waiting ? (
-              <Toast className="lk-toast-connection-state">
-                <UserToggle>{waiting}</UserToggle>
-              </Toast>
-            ) : (
-              <></>
-            )
-          } */}
           <Chat
             style={{ display: widgetState.showChat == 'show_chat' ? 'flex' : 'none' }}
             messageFormatter={formatChatMessageLinks}
             messageEncoder={chatMessageEncoder}
             messageDecoder={chatMessageDecoder}
           />
+
           {
             SettingsComponent && (
               <div
