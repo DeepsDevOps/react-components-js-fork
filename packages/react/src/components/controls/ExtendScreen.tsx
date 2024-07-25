@@ -36,7 +36,7 @@ export const ExtendScreen = /* @__PURE__ */ React.forwardRef<HTMLButtonElement, 
     }
 
     return (
-      <button onClick={toggleSide} className="lk-button" style={{ position: 'absolute', bottom: "0%", left: "0%", zIndex: 999999, width: "fit-content", height: "fit-content", background: "transparent" }} title={inFocus ? "Hide" : "Show"}>{inFocus ? "<<" : ">>"}</button>
+      <button onClick={toggleSide} className="lk-button" style={{ position: 'absolute', bottom: "15%", left: "0%", zIndex: 999999, width: "fit-content", height: "50px", background: "var(--lk-danger)", borderRadius: "0 10px 10px 0px;", padding: "5px" }} title={inFocus ? "Hide" : "Show"}>{inFocus ? "<<" : ">>"}</button>
     );
   },
 );
